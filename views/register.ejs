@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #4070f4;
+      }
+      .wrapper {
+        position: relative;
+        max-width: 430px;
+        width: 100%;
+        background: #fff;
+        padding: 34px;
+        border-radius: 6px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      .wrapper h2 {
+        position: relative;
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+      }
+      .wrapper h2::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 28px;
+        border-radius: 12px;
+        background: #4070f4;
+      }
+      .wrapper form {
+        margin-top: 30px;
+      }
+      .wrapper form .input-box {
+        height: 52px;
+        margin: 35px 0;
+        position: relative;
+      }
+      .wrapper form .input-box .error-message {
+        color: red;
+        font-size: 10px;
+        position: absolute;
+        top: 53px;
+        left: 15px;
+        display: none;
+      }
+      form .input-box input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding: 0 15px;
+        font-size: 17px;
+        font-weight: 400;
+        color: #333;
+        border: 1.5px solid #c7bebe;
+        border-bottom-width: 2.5px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+      .input-box input:focus,
+      .input-box input:valid {
+        border-color: #4070f4;
+      }
+      .input-box.button input {
+        color: #fff;
+        letter-spacing: 1px;
+        border: none;
+        background: #4070f4;
+        cursor: pointer;
+      }
+      .input-box.button input:hover {
+        background: #0e4bf1;
+      }
+      form .text h3 {
+        color: #333;
+        width: 100%;
+        text-align: center;
+      }
+      form .text h3 a {
+        color: #4070f4;
+        text-decoration: none;
+      }
+      form .text h3 a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2>Registration</h2>
+      <form id="form" action="register" method="post">
+        <div class="input-box">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your name"
+          />
+          <div class="error-message" id="name-error">Name is required atleast three letter.</div>
+        </div>
+        <div class="input-box">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+          />
+          <div class="error-message" id="email-error">
+            Please enter a valid email address.
+          </div>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create password"
+          />
+          <div class="error-message" id="password-error">
+            Password must be at least 6 characters long and include a digit, a
+            lowercase letter, an uppercase letter, and a special character.
+          </div>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            placeholder="Confirm password"
+          />
+          <div class="error-message" id="confirm-password-error">
+            Passwords do not match.
+          </div>
+        </div>
+        <div class="input-box button">
+          <input type="submit" value="Register Now" />
+        </div>
+        <div class="text">
+          <h3>Already have an account? <a href="login">Login now</a></h3>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("form");
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const confirm_password = document.getElementById("confirm_password");
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      const passwordPattern =
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{}|;:,.<>?]).{6,}$/;
+
+      const nameError = document.getElementById("name-error");
+      const emailError = document.getElementById("email-error");
+      const passwordError = document.getElementById("password-error");
+      const confirmPasswordError = document.getElementById(
+        "confirm-password-error"
+      );
+
+      form.addEventListener("submit", (event) => {
+        let valid = true;
+        const Name = name.value.trim();
+        const Email = email.value.trim();
+        const Password = password.value.trim();
+        const ConfirmPassword = confirm_password.value.trim();
+
+        if (Name.length < 3) {
+          name.style.borderColor = "red";
+          nameError.style.display = "block";
+          valid = false;
+        } else {
+          name.style.borderColor = "green";
+          nameError.style.display = "none";
+        }
+
+        if (!emailPattern.test(Email)) {
+          email.style.borderColor = "red";
+          emailError.style.display = "block";
+          valid = false;
+        } else {
+          email.style.borderColor = "green";
+          emailError.style.display = "none";
+        }
+
+        if (!passwordPattern.test(Password)) {
+          password.style.borderColor = "red";
+          passwordError.style.display = "block";
+          valid = false;
+        } else {
+          password.style.borderColor = "green";
+          passwordError.style.display = "none";
+        }
+
+        if (Password !== ConfirmPassword) {
+          confirm_password.style.borderColor = "red";
+          confirmPasswordError.style.display = "block";
+          valid = false;
+        } else {
+          confirm_password.style.borderColor = "green";
+          confirmPasswordError.style.display = "none";
+        }
+
+        if (!valid) {
+          console.log("Form submission prevented");
+          event.preventDefault();
+        } else {
+          console.log("Form submitted");
+        }
+      });
+
+      name.addEventListener("blur", () => {
+        const Name = name.value.trim();
+        if (Name.length < 3) {
+          name.style.borderColor = "red";
+          nameError.style.display = "block";
+        } else {
+          name.style.borderColor = "green";
+          nameError.style.display = "none";
+        }
+      });
+
+      email.addEventListener("blur", () => {
+        const Email = email.value.trim();
+        if (!emailPattern.test(Email)) {
+          email.style.borderColor = "red";
+          emailError.style.display = "block";
+        } else {
+          email.style.borderColor = "green";
+          emailError.style.display = "none";
+        }
+      });
+
+      password.addEventListener("blur", function () {
+        const Password = password.value.trim();
+        if (passwordPattern.test(Password)) {
+          password.style.borderColor = "green";
+          passwordError.style.display = "none";
+        } else {
+          password.style.borderColor = "red";
+          passwordError.style.display = "block";
+        }
+      });
+
+      confirm_password.addEventListener("blur", function () {
+        const Password = password.value.trim();
+        const ConfirmPassword = confirm_password.value.trim();
+
+        if (Password !== ConfirmPassword) {
+          confirm_password.style.borderColor = "red";
+          confirmPasswordError.style.display = "block";
+        } else {
+          confirm_password.style.borderColor = "green";
+          confirmPasswordError.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

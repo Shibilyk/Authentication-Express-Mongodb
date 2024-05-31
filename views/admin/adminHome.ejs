@@ -1,0 +1,118 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .product-list {
+    margin-bottom: 40px;
+  }
+
+  .product-grid {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-item {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .product-item h3 {
+    margin-top: 0;
+  }
+
+  .product-item p {
+    margin: 10px 0;
+  }
+
+  .product-actions button {
+    margin-right: 10px;
+  }
+
+  .price {
+    font-weight: bold;
+    color: #333;
+  }
+
+  button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #555;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<body>
+  <header>
+    <h1>Welcome to the Admin Page</h1>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="/admin/userList">User List</a></li>
+        <li><a href="/admin/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+ 
+  <script>
+    function confirmDelete(event) {
+      let askConfirm = confirm("Are you sure to delete the product?");
+      if (!askConfirm) {
+        event.preventDefault(); // Cancel the navigation if the user doesn't confirm
+      }
+    }
+  </script>
+</body>

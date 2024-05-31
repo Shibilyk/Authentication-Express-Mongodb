@@ -1,0 +1,76 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+</style>
+<body>
+  <h1>Users List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>age</th>
+        <th>Place</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% user.forEach(user => { %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user?.userDetails?.age %></td>
+        <td><%= user?.userDetails?.place %></td>
+        <td><%= user?.userDetails?.contact %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <a href="/admin/home">Go to Home</a>
+</body>
