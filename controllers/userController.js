@@ -13,7 +13,7 @@ exports.userHome = (req, res) => {
     return res.redirect("/admin/home");
   }
   if (req.session.user) {
-    return res.render("index");
+    return res.render("./user/index");
   }
   res.redirect("/user/login");
 };
@@ -22,7 +22,7 @@ exports.registerGet = (req, res) => {
   if (req.session.user) {
     return res.redirect("/user/");
   }
-  res.render("register");
+  res.render("./user/register");
 };
 
 exports.loginGet = (req, res) => {
@@ -35,9 +35,9 @@ exports.loginGet = (req, res) => {
   const error = req.session.error_message;
   if (error) {
     req.session.error_message = null;
-    return res.render("login", { error });
+    return res.render("./user/login", { error });
   }
-  res.render("login", { error });
+  res.render("./user/login", { error });
 };
 
 exports.loginPost = async (req, res) => {
@@ -124,9 +124,9 @@ exports.detailsget = async (req, res) => {
         contact: userDetail.contact,
       };
       // Render the form template with dynamic values
-      return res.render("showData", { passDetails });
+      return res.render("./user/showData", { passDetails });
     }
-    return res.render("userdata");
+    return res.render("./user/userdata");
   }
   res.redirect("/user/login");
 };
@@ -162,7 +162,7 @@ exports.updateDataGet = async(req, res) => {
     place:userDetail.place,
     contact:userDetail.contact
   }
-  res.render("update",{data:passDetails});
+  res.render("./user/update",{data:passDetails});
 };
 exports.updateDataPost = async (req, res) => {
   try {
